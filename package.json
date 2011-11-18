@@ -1,0 +1,10 @@
+{
+    "name": "lethus-errorlogger"
+  , "version": "0.0.1"
+  , "private": true
+  , "dependencies": {
+      "mongoose": ">= 2.3"
+      , "express": "2.4.3"
+      , "jade": ">= 0.0.1"
+  }
+}
