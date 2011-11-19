@@ -5,9 +5,12 @@
 
 var express = require('express');
 var mongoose = require('mongoose');
+var email = require('mailer');
+
 var Schema = mongoose.Schema
   , ObjectId = Schema.ObjectId;
 var app = module.exports = express.createServer();
+
 
 // Configuration
 
@@ -46,8 +49,27 @@ app.post('/post/', function(req, res){
     instance.prefeitura = req.body.prefeitura;
     instance.erro = req.body.erro;
     instance.save(function (err) {
-        console.info(err);
+        if(err){ console.log(err); }
+        
+        console.info(this.pk);
+        email.send({
+            host: "smtp.gmail.com",
+            port : "587",
+            //ssl: true, 
+            domain: "smtp.gmail.com",
+            authentication: "login",
+            username: "projetos@lethus.com.br",
+            password: "Lethus725",
+            to : "projetos@lethus.com.br",
+            from : "projetos@lethus.com.br",
+            subject : "Erro ocorrido em " + req.body.prefeitura,
+            body : "Detalhes em /"+instance.pk
+        }, function(err, result){
+            if(err){ console.log(err); }
+        });
+
     });
+
     res.render('index', {
         title: 'Express'
     });
