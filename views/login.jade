@@ -1,4 +1,11 @@
 #login_div
+   h3 Login
+   
+   - if (messages)
+      ul#messages
+      - each message in messages
+        li(class="message") #{message}
+
    form(action=".", method="POST")
       p
          label Usuário:

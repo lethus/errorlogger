@@ -1,0 +1,17 @@
+#users-div
+  h2 Erros acontecidos
+  table
+    thead
+      tr
+        th Prefeitura
+        th Horário
+    tbody
+    - each error in errors
+      tr
+        td
+           a(href="/errors/#{error.id}/")
+             #{error.prefeitura}
+        td
+           #{error.date.getDate()}/#{error.date.getMonth()}/#{error.date.getFullYear()}
+           #{error.date.getHours()}:#{error.date.getMinutes()}
+           a(href="/errors/delete/#{error.id}/") Apagar

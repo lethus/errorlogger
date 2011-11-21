@@ -4,7 +4,11 @@
  */
 
 var express = require('express');
-var app = module.exports = express.createServer();
+var app = module.exports = express.createServer(
+    express.bodyParser()
+  , express.cookieParser()
+  , express.session({ secret: 'lethus123' })
+);
 
 // Configuration
 app.configure(function(){
@@ -14,6 +18,12 @@ app.configure(function(){
   app.use(express.methodOverride());
   app.use(app.router);
   app.use(express.static(__dirname + '/public'));
+});
+
+app.dynamicHelpers({
+  messages: function(req){
+      return req.session.messages;
+  }
 });
 
 app.configure('development', function(){

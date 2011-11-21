@@ -1,0 +1,14 @@
+#users-div
+  h2 Usuários
+  a(href="/users/new/") Adicionar usuário
+  table
+    thead
+      tr
+        th Usuário
+        th Ações
+    tbody
+    - each user in users
+      tr
+        td #{user.username}
+        td
+           a(href="/users/delete/#{user.id}/") Apagar

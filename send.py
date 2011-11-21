@@ -1,9 +1,9 @@
 import httplib, urllib
-params = urllib.urlencode({'prefeitura': "Prefeitura Municipal de Pirai", 'error': "Erro pra caramba"})
+params = urllib.urlencode({'prefeitura': "Prefeitura Municipal de Pirai", 'erro': "Erro pra caramba"})
 headers = {"Content-type": "application/x-www-form-urlencoded",
            "Accept": "text/plain"}
 conn = httplib.HTTPConnection("localhost", 3000)
-conn.request("POST", "/post/", params, headers)
+conn.request("POST", "/errors/post/", params, headers)
 response = conn.getresponse()
 print response.status, response.reason
 
